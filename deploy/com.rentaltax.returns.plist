@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd User Agent: com.rentaltax.returns
+  Fires January 15 at 09:00.
+
+  Runs the tax return pipeline for the JUST-CLOSED year:
+    → Emails both owners asking for FINAL actual {last_year} income/expenses
+    → Waits up to 72 h for reply
+    → Fills NR4, T776 × 2, T1159 × 2 (tax returns for last year)
+    → Emails completed PDFs to both owners
+
+  Why January 15: December is now closed so all monthly figures are final.
+  Filing deadlines: balance owing April 30, returns due June 30.
+
+  Install:
+    cp deploy/com.rentaltax.returns.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.rentaltax.returns.plist
+-->
+<plist version="1.0">
+<dict>
+
+  <key>Label</key>
+  <string>com.rentaltax.returns</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3</string>
+    <string>/Users/parisa/Desktop/python_codes/rental_tax_automation/main.py</string>
+    <string>--file-return</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/parisa/Desktop/python_codes/rental_tax_automation</string>
+
+  <!-- January 15 at 09:00 -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Month</key>   <integer>1</integer>
+    <key>Day</key>     <integer>15</integer>
+    <key>Hour</key>    <integer>9</integer>
+    <key>Minute</key>  <integer>0</integer>
+  </dict>
+
+  <key>RunAtLoad</key>  <false/>
+  <key>KeepAlive</key>  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/parisa/Library/Logs/rentaltax/returns.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/parisa/Library/Logs/rentaltax/returns-error.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>  <string>/Users/parisa</string>
+    <key>PATH</key>  <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+</dict>
+</plist>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd User Agent: com.rentaltax.reminders
+  Fires every day at 09:05 (local time).
+  Sends deadline-based reminder emails when within warning windows:
+    45 days before Jan  1  → NR6 reminder (with NR6 PDFs attached)
+    30 days before Mar 31  → NR4 reminder (agent must file)
+    30 days before Apr 30  → Tax payment due reminder
+    30 days before Jun 30  → T1159 reminder (with T1159 PDFs attached)
+    15th of each month     → Monthly withholding remittance reminder to agent
+
+  Duplicate suppression is handled in logs/reminders.json — each reminder
+  is sent at most once per calendar year per deadline.
+
+  Install:
+    cp deploy/com.rentaltax.reminders.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.rentaltax.reminders.plist
+-->
+<plist version="1.0">
+<dict>
+
+  <key>Label</key>
+  <string>com.rentaltax.reminders</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3</string>
+    <string>/Users/parisa/Desktop/python_codes/rental_tax_automation/main.py</string>
+    <string>--check-reminders</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/parisa/Desktop/python_codes/rental_tax_automation</string>
+
+  <!-- Every day at 09:05 (5 min after the annual agent, to avoid overlap) -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>    <integer>9</integer>
+    <key>Minute</key>  <integer>5</integer>
+  </dict>
+
+  <key>RunAtLoad</key>   <false/>
+  <key>KeepAlive</key>   <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/parisa/Library/Logs/rentaltax/reminders.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/parisa/Library/Logs/rentaltax/reminders-error.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>  <string>/Users/parisa</string>
+    <key>PATH</key>  <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+</dict>
+</plist>

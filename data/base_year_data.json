@@ -1,0 +1,85 @@
+{
+  "_comment": "FAKE DATA — safe to commit. Replace values in config.py and this file with real data privately.",
+  "tax_year": 2025,
+
+  "property": {
+    "address": "742 Evergreen Terrace SW",
+    "city": "Calgary",
+    "province": "AB",
+    "postal_code": "T2P 1J5",
+    "country": "Canada",
+    "type": "residential_rental"
+  },
+
+  "owner_1": {
+    "first_name_initial": "J",
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "sin": "999999999",
+    "dob": "19800415",
+    "mailing_address": "Unit 301, 15 Harbour Road",
+    "city": "Hong Kong",
+    "province_state": "",
+    "postal_code": "",
+    "country": "HKG",
+    "ownership_pct": 50,
+    "nr_account_pt1": "NR",
+    "nr_account_pt2": "123456789"
+  },
+
+  "owner_2": {
+    "first_name_initial": "J",
+    "first_name": "John",
+    "last_name": "Smith",
+    "sin": "888888888",
+    "dob": "19780622",
+    "mailing_address": "Unit 301, 15 Harbour Road",
+    "city": "Hong Kong",
+    "province_state": "",
+    "postal_code": "",
+    "country": "HKG",
+    "ownership_pct": 50,
+    "nr_account_pt1": "NR",
+    "nr_account_pt2": "987654321"
+  },
+
+  "withholding_agent": {
+    "name": "Robert Chen",
+    "address": "742 Evergreen Terrace SW",
+    "city": "Calgary",
+    "province": "AB",
+    "postal_code": "T2P 1J5",
+    "phone": "4031234567",
+    "business_number": "123456789",
+    "email": "agent@example.com"
+  },
+
+  "annual_income": {
+    "rental_income": 28800,
+    "other_income": 0
+  },
+
+  "annual_expenses": {
+    "advertising": 300,
+    "insurance": 1800,
+    "mortgage_interest": 12500,
+    "office_expenses": 0,
+    "professional_fees": 0,
+    "management_fees": 2880,
+    "repairs_maintenance": 2100,
+    "salaries": 0,
+    "property_taxes": 3200,
+    "travel": 0,
+    "utilities": 1400,
+    "other_expenses": 0
+  },
+
+  "_computed": {
+    "_note": "These are re-derived at runtime; stored here only for reference.",
+    "total_expenses": 24180,
+    "net_income_total": 4620,
+    "net_income_per_owner": 2310,
+    "gross_income_per_owner": 14400,
+    "withholding_25pct_per_owner": 578
+  }
+}

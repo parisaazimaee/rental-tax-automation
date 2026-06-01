@@ -1,0 +1,17 @@
+# Credentials — never commit
+.env
+
+# Generated output — not source code
+generated_forms/
+logs/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
