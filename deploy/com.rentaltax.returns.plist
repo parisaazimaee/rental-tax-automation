@@ -7,7 +7,7 @@
 
   Runs the tax return pipeline for the JUST-CLOSED year:
     → Emails both owners asking for FINAL actual {last_year} income/expenses
-    → Waits up to 72 h for reply
+    → Waits up to 30 days for reply (nudges on days 5, 10, 20, 29)
     → Fills NR4, T776 × 2, T1159 × 2 (tax returns for last year)
     → Emails completed PDFs to both owners
 

@@ -7,7 +7,7 @@
 
   Runs the NR6 election pipeline for the UPCOMING year:
     → Emails both owners asking for estimated {next_year} income/expenses
-    → Waits up to 72 h for reply
+    → Waits up to 30 days for reply
     → Fills NR6 × 2 (election forms for next year)
     → Emails completed NR6 PDFs to both owners
 
